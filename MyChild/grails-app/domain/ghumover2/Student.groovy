@@ -15,7 +15,7 @@ class Student {
 
 
     static constraints = {
-
+		id generator: 'increment',name: 'studentId'
     	parent(nullable:true)
     	grade(nullable:true)
     }

@@ -50,7 +50,7 @@ class UrlMappings {
 				controller = "parent"
 				action = "accountInfo"
 		}
-				"/Parent/gethomework/$id"{
+				"/Parent/gethomework/$userId"{
 					controller = "parent"
 					action = "getHomeWork"
 			}
@@ -62,6 +62,11 @@ class UrlMappings {
 			"/activity/$activityCode"{
 				controller = "ghumo"
 				action = "getActivityDetail"
+		}
+			
+			"/Teacher/id/$userId"{
+				controller = "teacher"
+				action = "getTeacherDetails"
 		}
 	}
 }

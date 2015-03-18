@@ -9,5 +9,6 @@ class Father extends User {
     static hasMany = [children:Student]
 
     static constraints = {
+		
     }
 }

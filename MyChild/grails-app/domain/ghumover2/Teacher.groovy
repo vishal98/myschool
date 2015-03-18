@@ -5,13 +5,13 @@ import grails.rest.Resource
 class Teacher  extends User  {
 
      static belongsTo = Grade
-     static hasMany = [grades:Grade]
+     static hasMany = [grades:Grade,subject:Subject ]
 
      int teacherId
 	 String teacherName
 	 String teacherPhoto
-     
-     
+     String teacherEmailId
+     String phoneNo
 
      static constraints = {
     	

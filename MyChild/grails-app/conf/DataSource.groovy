@@ -18,7 +18,7 @@ hibernate {
 environments {
   development {
     dataSource {
-        dbCreate = "create-drop"
+        dbCreate = "create"
         url = "jdbc:mysql://localhost/mychild"
         	username = "root"
 			password = "admin"
