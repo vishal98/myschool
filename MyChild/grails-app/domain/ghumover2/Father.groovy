@@ -2,7 +2,7 @@ package ghumover2
 import grails.rest.Resource
 
 @Resource
-class Parent extends User {
+class Father extends User {
    
     //int parentId
 	String parentName

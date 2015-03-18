@@ -20,8 +20,8 @@ environments {
     dataSource {
         dbCreate = "create-drop"
         url = "jdbc:mysql://localhost/mychild"
-        username = "root"
-        password = "123"
+        	username = "root"
+			password = "admin"
   }
   }
   test {

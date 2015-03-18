@@ -9,7 +9,7 @@ class Student {
 	 // int studentAge // should be dob
 	 // int studentGrade
  	 // String studentSection
- 	 static belongsTo = [grade:Grade ,parent:Parent]
+ 	 static belongsTo = [grade:Grade ,parent:Father]
 	 String studentPhoto
 	
 

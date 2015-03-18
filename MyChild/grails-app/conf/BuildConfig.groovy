@@ -40,6 +40,8 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		
+		mavenRepo "http://repo.grails.org/grails/core"
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -51,22 +53,23 @@ grails.project.dependency.resolution = {
          runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+		compile 'commons-beanutils:commons-beanutils:1.8.3'
     }
 
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.55"
-
+		compile ":gson:1.1.4"
+		
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
 
-        compile ":spring-security-core:2.0-RC4"
-                                  compile ":spring-security-rest:1.4.0.RC5", {
-                                   excludes ('cors','spring-security-core')
-                                          }
-                                          
+       compile ":spring-security-core:2.0-RC4"
+		compile ":spring-security-rest:1.5.0.M2", {
+		     excludes ('cors','spring-security-core')
+		}
         
         
         
