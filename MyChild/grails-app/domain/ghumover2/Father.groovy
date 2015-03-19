@@ -6,9 +6,11 @@ class Father extends User {
    
     //int parentId
 	String parentName
+	String emailId
     static hasMany = [children:Student]
 
     static constraints = {
+		 emailId(nullable:true)
 		
     }
 }

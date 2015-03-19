@@ -59,6 +59,11 @@ class UrlMappings {
 				action = "getTodayHomeWork"
 		}
 			
+			"/Parent/username/$username"{
+				controller = "parent"
+				action = "getParentDetails"
+		}
+			
 			"/activity/$activityCode"{
 				controller = "ghumo"
 				action = "getActivityDetail"

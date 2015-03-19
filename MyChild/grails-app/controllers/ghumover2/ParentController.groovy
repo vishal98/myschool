@@ -7,6 +7,23 @@ import java.text.SimpleDateFormat
 
 @Secured(['ROLE_PARENT'])
 class ParentController {
+	
+	
+	
+	def getParentDetails(){
+		def article=new Father()
+	//	def articleList=article.list()
+		//int id= Integer.parseInt(params.id)
+		def trek=article.findAllWhere(username:params.username)
+		//println articleList 
+		
+		
+		JSON.use('father') {
+			render trek as JSON
+		}
+	
+	}
+	
 	def accountInfo(){
 		def article=new Father()
 		def articleList=article.list()
@@ -41,11 +58,11 @@ class ParentController {
 		Date date = new Date()
 		def from = date.clearTime()
 		def to = from + 1
-		def query = Homework.where{
-			studentId == tid
-			dateCreated in (from .. to)
+		//def query = Homework.where{
+			//studentId == tid
+			//dateCreated in (from .. to)
 			
-		}
+		//}
 		def results = query.list()
 		render results as JSON
 		/*JSON.use('father') {
