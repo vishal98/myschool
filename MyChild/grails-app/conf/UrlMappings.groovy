@@ -82,9 +82,23 @@ class UrlMappings {
 				controller = "teacher"
 				action = "getMsg"
 		}
+			"/Parent/exam/$classid"{
+				controller = "parent"
+				action = "getExamDetails"
+		}
+			"/Parent/child/schedule/$examId"{
+				controller = "teacher"
+				action = "getExamSchedule"
+		}
+			"/Parent/child/syllabus/$examId/$scheduleId"{
+				controller = "teacher"
+				action = "getSyllabus"
+		}
 		
-
+				
+		
+	}
 			 
 			
-	}
+	
 }
