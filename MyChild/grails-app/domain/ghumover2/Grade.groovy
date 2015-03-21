@@ -5,15 +5,20 @@ import grails.rest.Resource
 class Grade {
 
     static hasMany = [teachers:Teacher , students:Student]
-   
-    int grade
+    Long gradeId
+    int name
 	String section
     int classTeacherId 
+	String classTeacherName
  
 
-
+static mapping ={
+	id generator: 'increment',name: 'gradeId'
+    }
 
     static constraints = {
+
     	classTeacherId(nullable:true)
+		classTeacherName(nullable:true)
     }
 }

@@ -4,7 +4,7 @@ import grails.rest.Resource
 @Resource
 class Student {
     
-     int studentId
+     Long studentId
 	 String studentName  
 	 // int studentAge // should be dob
 	 // int studentGrade
@@ -12,10 +12,11 @@ class Student {
  	 static belongsTo = [grade:Grade ,parent:Father]
 	 String studentPhoto
 	
-
-
+	 static mapping = {
+	 id generator: 'increment',name: 'studentId'
+     }
     static constraints = {
-		id generator: 'increment',name: 'studentId'
+		
     	parent(nullable:true)
     	grade(nullable:true)
     }

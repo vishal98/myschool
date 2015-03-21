@@ -20,8 +20,13 @@ class Homework
 		todaysPosts {
 		   def now = new Date().clearTime()
 		   between('dateCreated', now, now+1)
-		   parent(nullable:true)
-		   grade(nullable:true)
+		 
 		}
 	}
+	static constraints = {
+		student(nullable:true)
+		grade(nullable:true)
+		}
+	
+	
 }

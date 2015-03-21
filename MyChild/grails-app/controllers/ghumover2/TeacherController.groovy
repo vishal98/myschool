@@ -38,12 +38,26 @@ class TeacherController {
 	def getTeacherDetails (){
 		def article=new Teacher()
 		String grade= params.userId 
+		
 		def trek=article.findAllWhere(username:grade)
 		
 		JSON.use('teacherC') {
 			render trek as JSON
 		 }
 	
+
+		
+	}
+	
+	def getMsg (){
+		def msgType=new Message() 
+	
+		def trek=msgType.findAllWhere(type:"msg")
+				
+		JSON.use('msg') {
+			render trek as JSON
+		
+		}
 
 		
 	}
@@ -64,9 +78,9 @@ class TeacherController {
 	
 	def getStudentList (){
 		def article=new Student()
-		int grade= Integer.parseInt(params.grade) 
-		def trek=article.findAllWhere(studentGrade:grade)
-		trek=article.findAllWhere(studentSection:params.studentSection)
+		Long grade= Integer.parseInt(params.gradeId) 
+	
+		def trek=article.findAllWhere('grade.gradeId':grade)
 		//render trek as JSON
 		
 		
@@ -104,12 +118,17 @@ class TeacherController {
 	}*/
 		
 		def jsonObj = request.JSON
-		def stud = new Homework(jsonObj)
+		def stud
+		for (int i = 0; i < jsonObj.size(); i++) {
+			 stud = new Homework(jsonObj[i])
+		
+	
 		if (!stud.save(flush: true)){
 			stud.errors.each {
 				println it
 				render failure as JSON
 			}
+		}
 		}
 	
 		render stud as JSON

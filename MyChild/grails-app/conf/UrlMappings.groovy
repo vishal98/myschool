@@ -37,12 +37,12 @@ class UrlMappings {
 				controller = "teacher"
 				action = "getSubject"
 		}
-			"/studentList/$grade/$studentSection"{
+			"/Teacher/studentList/$gradeId"{
 				controller = "teacher"
 				action = "getStudentList"
 		}
 			
-			"/sendmessage/"{
+			"/Teacher/sendmessage/"{
 				controller = "teacher"
 				action = "sendMessage"
 		}
@@ -73,5 +73,18 @@ class UrlMappings {
 				controller = "teacher"
 				action = "getTeacherDetails"
 		}
+			
+			"/Parent/studentId/$stdid/teacher/$classid"{
+				controller = "parent"
+				action = "getHomeWork"
+		}
+			"/Teacher/msg"{
+				controller = "teacher"
+				action = "getMsg"
+		}
+		
+
+			 
+			
 	}
 }

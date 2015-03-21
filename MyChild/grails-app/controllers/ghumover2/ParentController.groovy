@@ -5,6 +5,8 @@ import grails.plugin.springsecurity.annotation.Secured;
 
 import java.text.SimpleDateFormat
 
+import org.hibernate.criterion.CriteriaSpecification;
+
 @Secured(['ROLE_PARENT'])
 class ParentController {
 	
@@ -18,9 +20,9 @@ class ParentController {
 		//println articleList 
 		
 		
-		JSON.use('father') {
+
 			render trek as JSON
-		}
+		
 	
 	}
 	
@@ -38,17 +40,29 @@ class ParentController {
 	
 	}
 	def getHomeWork(){
-		def article=new Homework()
-		def articleList=article.list()
-		int id= Integer.parseInt(params.id)
-		def trek=article.findAllWhere(studentId:id)
-		trek.sort{it.dueDate}
-		println articleList
 		
-		render trek as JSON
-		/*JSON.use('father') {
-			render trek as JSON
-		}*/
+	
+		Long sid= Integer.parseInt(params.stdid)
+		Long clasid= Integer.parseInt(params.classid)
+		
+		
+		
+		def c = Homework.createCriteria()
+
+		def homeworkList = c.list {
+			createAlias('student', 'std', CriteriaSpecification.INNER_JOIN)
+			createAlias('grade', 'grd', CriteriaSpecification.INNER_JOIN)
+			and {
+				eq('std.studentId',sid)
+			eq('grd.gradeId',clasid)
+		}
+		
+			
+		}
+		
+		JSON.use('homework') {
+			render homeworkList as JSON
+		}
 	}
 	def getTodayHomeWork(){
 		def article=new Homework()
