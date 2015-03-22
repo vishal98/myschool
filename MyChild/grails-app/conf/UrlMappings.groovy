@@ -94,6 +94,14 @@ class UrlMappings {
 				controller = "teacher"
 				action = "getSyllabus"
 		}
+			"/Parent/student"(resources:'student') {
+				"/father"(resources:'guardian')
+			}
+	
+			"/Parent/guardian"(resources: 'guardian')
+					{
+	
+					}
 		
 				
 		

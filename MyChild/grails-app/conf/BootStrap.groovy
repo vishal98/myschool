@@ -21,6 +21,7 @@ class BootStrap {
 	def init = { servletContext ->
 
 		
+				
 		// BOOTSTRAPING DATES
 		def createQuery = "CREATE TABLE IF NOT EXISTS ints ( i tinyint unique );"
 		def insertQuery = "INSERT INTO ints (i) VALUES (0),(1),(2),(3),(4),(5),(6),(7),(8),(9)   ON DUPLICATE KEY UPDATE i = VALUES(i);"
@@ -68,7 +69,7 @@ class BootStrap {
 		Role roleTeacher;
 		Role roleParent;
 		Teacher teacher;
-		Father parent;
+		Guardian parent;
 
 
 		roleTeacher = new Role(authority: ROLE_TEACHER)
@@ -123,7 +124,7 @@ class BootStrap {
 		def cl10A = Grade.get(3)
 		def cl10B = Grade.get(4)
 
-		new Student(studentName:"Rohith", grade:cl5A ,studentPhoto:"100.jpg").save(flush:true)
+/*		new Student(studentName:"Rohith", grade:cl5A ,studentPhoto:"100.jpg").save(flush:true)
 		new Student(studentName:"Rahul",grade:cl5B,studentPhoto:"101.jpg").save(flush:true)
 		new Student(studentName:"Manoj", grade:cl10A ,studentPhoto:"102.jpg").save(flush:true)
 		new Student(studentName:"Suresh",grade:cl5B,studentPhoto:"103.jpg").save(flush:true)
@@ -135,18 +136,68 @@ class BootStrap {
 		def manoj = Student.get(3)
 		def suresh = Student.get(4)
 		def noble = Student.get(5)
-		def thomas = Student.get(6)
+		def thomas = Student.get(6)*/
 
-		new Father(username: 'ravi', password: "123" ,parentName:"Ravi")
-		.addToChildren(rohith)
-		.addToChildren(rahul).save(flush:true)
-		new Father(username: 'hari', password: "123" ,parentName:"Hari").save(flush:true)
+		def father , mother , local_guardian , s1 , s2 , s3
+		father = new Guardian(name: "Ravi" , username: "ravi@test.com" , password: "123" ).save()
+		mother = new Guardian(name:"Raani" , username: "raani@test.com" , password: "123" ).save()
+		s1 =  new Student(studentId:100 , registerNumber: "ST100" ,studentName: "Rohith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father" ,father:father , mother : mother).save(flush: true)
+		s2 =  new Student(studentId:101 , registerNumber: "ST101" ,studentName: "Renjith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father" , father: father , mother:mother  ).save()
+		s3 =  new Student(studentId:102 , registerNumber: "ST102" ,studentName: "Rohan" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father" ,father:father ,mother:mother ).save()
+				father.addToChildren(s2)
+					  .addToChildren(s3)
+					  .save(flush: true)
+				mother.addToChildren(s2)
+					  .addToChildren(s3)
+					  .save(flush: true)
+					  new UserRole(user:father , role:roleParent).save(flush: true)
+					  new UserRole(user:mother , role:roleParent).save(flush: true)
+					  
+
+
+
+
+	   father = new Guardian(name: "Mahadev" , username: "mahadev@test.com" , password: "123" ).save()
+	   mother = new Guardian(name:"Malini" , username: "malini@test.com" , password: "123" ).save()
+	   local_guardian =  new Guardian(name:"Manish" , username: "manish@test.com" , password: "123" ).save()
+	   s1 =  new Student(studentId:103 , registerNumber: "ST103" ,studentName: "Manoj" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local guardian" ,father:father , mother : mother ,local_guardian:local_guardian).save(flush: true)
+	   s2 =  new Student(studentId:104 , registerNumber: "ST104" ,studentName: "Midhun" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local Guardian" , father: father , mother:mother,local_guardian:local_guardian  ).save()
+	   s3 =  new Student(studentId:105 , registerNumber: "ST105" ,studentName: "Mohith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local Guardian" ,father:father ,mother:mother,local_guardian:local_guardian ).save()
+	   father.addToChildren(s2)
+			   .addToChildren(s3)
+			   .save(flush: true)
+	   mother.addToChildren(s2)
+			   .addToChildren(s3)
+			   .save(flush: true)
+	   local_guardian.addToChildren(s2)
+					 .addToChildren(s3)
+					 .save(flush: true)
+
+					 new UserRole(user:father , role:roleParent).save(flush: true)
+					 new UserRole(user:mother , role:roleParent).save(flush: true)
+					 
+
+
+	   father = new Guardian(name: "Nagesh" , username: "nagesh@test.com" , password: "123" ).save()
+	   mother = new Guardian(name:"Nanditha" , username: "nanditha@test.com" , password: "123" ).save()
+	   s1 =  new Student(studentId:106 , registerNumber: "ST106" ,studentName: "Nivas" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" ,father:father , mother : mother).save(flush: true)
+	   s2 =  new Student(studentId:107 , registerNumber: "ST107" ,studentName: "Neha" , gender: "Female" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" , father: father , mother:mother  ).save()
+	   s3 =  new Student(studentId:108 , registerNumber: "ST108" ,studentName: "Nikhitha" , gender: "Female" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" ,father:father ,mother:mother ).save()
+	   father.addToChildren(s2)
+			   .addToChildren(s3)
+			   .save(flush: true)
+	   mother.addToChildren(s2)
+			   .addToChildren(s3)
+			   .save(flush: true)
 
 
 		/* Add  teachers to class 5A and also set one of the teacher as classteacher */
 		roleParent = Role.findByAuthority('ROLE_PARENT')
 		roleTeacher = Role.findByAuthority('ROLE_TEACHER')
 
+		new UserRole(user:father , role:roleParent).save(flush: true)
+		new UserRole(user:mother , role:roleParent).save(flush: true)
+		
 		def mathew = Teacher.findByTeacherId(100)
 		def sibi = Teacher.findByTeacherId(101)
 		def sathees = Teacher.findByTeacherId(102)
@@ -154,8 +205,8 @@ class BootStrap {
 		new UserRole(user:mathew , role:roleTeacher).save(flush:true)
 		new UserRole(user:sibi , role:roleTeacher).save(flush:true)
 		new UserRole(user:sathees , role:roleTeacher).save(flush:true)
-		new UserRole(user:Father.findByUsername('ravi') , role:roleParent).save(flush:true)
-		new UserRole(user:Father.findByUsername('hari') , role:roleParent ).save(flush:true)
+		//new UserRole(user:Father.findByUsername('ravi') , role:roleParent).save(flush:true)
+		//new UserRole(user:Father.findByUsername('hari') , role:roleParent ).save(flush:true)
 
 
 		cl5A.addToTeachers(mathew)
@@ -228,11 +279,11 @@ class BootStrap {
 
 		//Homeworks for students
 		
-		   new Homework(homeworkId: 100 ,grade: cl5A , subject: "english" , homework: "English homework", dueDate: "15-04-2015" ,section: "A" ,student: rohith , message: "English Homework for Rohith , 5 A ", gradeFlag: '0').save(flush: true)
-		   new Homework(homeworkId: 101 ,grade: cl5B , subject: "english" , homework: "English homework" ,  dueDate: "10-04-2015" ,section: "B", student: rahul , message: "English Homework for Rahul ,  5 B  ", gradeFlag: '0').save(flush: true)
-		   new Homework(homeworkId: 102 ,grade: cl6A , subject: "history" , homework: "History homework" ,dueDate: "9-04-2015" ,section: "A", student: thomas, message: "History Homework for Thomas , 6 A  ", gradeFlag: '0').save(flush: true)
-		   new Homework(homeworkId: 103 ,grade: cl6B , subject: "computerScience" , homework: "ComputerScience homework" , dueDate: "8-04-2015" ,section: "A", student: noble , message: "ComputerScience Homework for noble , 7 A ", gradeFlag: '0').save(flush: true)
-		   new Homework(homeworkId: 104 ,grade: cl10A , subject: "physics" ,homework: "Physics homework", dueDate: "7-04-2015" ,section: "A",student: manoj , message: "Physics Homework for manoj 10 A", gradeFlag: '0').save(flush: true)
+	//	   new Homework(homeworkId: 100 ,grade: cl5A , subject: "english" , homework: "English homework", dueDate: "15-04-2015" ,section: "A" ,student: rohith , message: "English Homework for Rohith , 5 A ", gradeFlag: '0').save(flush: true)
+		//   new Homework(homeworkId: 101 ,grade: cl5B , subject: "english" , homework: "English homework" ,  dueDate: "10-04-2015" ,section: "B", student: Rohith , message: "English Homework for Rahul ,  5 B  ", gradeFlag: '0').save(flush: true)
+		   //new Homework(homeworkId: 102 ,grade: cl6A , subject: "history" , homework: "History homework" ,dueDate: "9-04-2015" ,section: "A", student: thomas, message: "History Homework for Thomas , 6 A  ", gradeFlag: '0').save(flush: true)
+		   //new Homework(homeworkId: 103 ,grade: cl6B , subject: "computerScience" , homework: "ComputerScience homework" , dueDate: "8-04-2015" ,section: "A", student: noble , message: "ComputerScience Homework for noble , 7 A ", gradeFlag: '0').save(flush: true)
+		//   new Homework(homeworkId: 104 ,grade: cl10A , subject: "physics" ,homework: "Physics homework", dueDate: "7-04-2015" ,section: "A",student: Nivas , message: "Physics Homework for manoj 10 A", gradeFlag: '0').save(flush: true)
 	  
 	  
 	  
@@ -283,7 +334,8 @@ class BootStrap {
 			  new ExamSyllabus(exam: exam3 , subject: physics , syllabus: "Physics Syllabus").save(flush: true)
 	  
 	  
-	  
+			
+	 
 
 
 
@@ -343,13 +395,13 @@ class BootStrap {
 			}
 		}
 	
-			JSON.registerObjectMarshaller( Father ) { Father father ->
+			/*JSON.registerObjectMarshaller( Guardian ) { Guardian fathert ->
 
 			
-					 return ['parentId': father.id,
-				'parentName': father.parentName,
-				'emailId':father.emailId, student:father.children]
-			}
+					 return ['parentId': fathert.id,
+				'parentName': fathert.name,
+				'emailId':fathert.emailId, student:fathert.children]
+			}*/
 		
 		
 		JSON.registerObjectMarshaller(Student) {

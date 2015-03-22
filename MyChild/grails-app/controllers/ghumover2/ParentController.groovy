@@ -13,7 +13,7 @@ class ParentController {
 	
 	
 	def getParentDetails(){
-		def article=new Father()
+		def article=new Guardian()
 	//	def articleList=article.list()
 		//int id= Integer.parseInt(params.id)
 		def trek=article.findAllWhere(username:params.username)
@@ -27,7 +27,7 @@ class ParentController {
 	}
 	
 	def accountInfo(){
-		def article=new Father()
+		def article=new Guardian()
 		def articleList=article.list()
 		int id= Integer.parseInt(params.id)
 		def trek=article.findAllWhere(parentId:id)
