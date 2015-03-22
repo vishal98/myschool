@@ -4,7 +4,7 @@ import org.grails.databinding.BindingFormat
 
 class Homework 
 {
-	int homeworkId
+	Integer homeworkId
 	Grade grade
 	String subject
 	@BindingFormat('dd-MM-yyyy')

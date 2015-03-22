@@ -6,9 +6,9 @@ class Grade {
 
     static hasMany = [teachers:Teacher , students:Student]
     Long gradeId
-    int name
+    Integer name
 	String section
-    int classTeacherId 
+    Integer classTeacherId
 	String classTeacherName
  
 

@@ -5,7 +5,7 @@ import org.grails.databinding.BindingFormat
 @Resource(formats=['json', 'xml'])
 class Student  {
 
-	int studentId
+	Integer studentId
 	String registerNumber
 	String studentName
 	String gender

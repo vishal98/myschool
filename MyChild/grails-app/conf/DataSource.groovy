@@ -21,7 +21,7 @@ environments {
         dbCreate = "create-drop"
         url = "jdbc:mysql://localhost/mychild"
         	username = "root"
-			password = "admin"
+			password = "123"
   }
   }
   test {

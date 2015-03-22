@@ -4,7 +4,7 @@ import grails.rest.Resource
 @Resource
 class GradeSubject {
 
-    int grade
+    Integer grade
 	Subject subject
     static constraints = {
     }

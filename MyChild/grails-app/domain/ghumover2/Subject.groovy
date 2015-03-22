@@ -4,7 +4,7 @@ import grails.rest.Resource
 @Resource
 class Subject {
      
-    int subjectId
+    Integer subjectId
 	String subjectName
 	//int grade
 	//String section

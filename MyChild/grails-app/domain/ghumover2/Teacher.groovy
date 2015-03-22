@@ -7,7 +7,7 @@ class Teacher  extends User  {
      static belongsTo = Grade
      static hasMany = [grades:Grade,subject:Subject ]
 
-     int teacherId
+     Integer teacherId
 	 String teacherName
 	 String teacherPhoto
      String teacherEmailId
