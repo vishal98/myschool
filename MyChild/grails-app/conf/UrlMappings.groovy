@@ -10,7 +10,7 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
 		
-		"/detail/$name/event/$event?" {
+	/*	"/detail/$name/event/$event?" {
 			controller = "ghumo"
 			action = "showEvents"
 		
@@ -102,9 +102,62 @@ class UrlMappings {
 					{
 	
 					}
-		
-				
-		
+
+*/
+
+		// NEW ADDED APIS
+
+
+		"/myapp/timetable/$gradeId"
+				{
+			controller = "TimeTable"
+			action = "getWeekTimetable"
+
+		     }
+
+		"/myapp/timetable/$gradeId/$section/$day"
+				{
+					controller = "TimeTable"
+					action =  "getDayTimeTable"
+				}
+
+
+
+
+        "/myapp/parent/accountInfo/$id"
+				{
+					controller = "Guardian"
+					action = "getAccountInfo"
+				}
+
+		"/myapp/getHomework/$gradeId/$section"
+				{
+					controller = "Homework"
+					action = "getClassHomework"
+
+				}
+		"/myapp/getHomework/$gradeId/$section/$subject"
+				{
+					controller = "Homework"
+					action = "getClassHomeworkBySubject"
+
+				}
+
+		"/myapp/teacher/homework"(resources:"Homework")
+
+
+		"/myapp/parent"(resources : "guardian")
+
+		"/myapp/student"(resources : "student")
+
+
+
+
+
+
+
+
+
 	}
 			 
 			

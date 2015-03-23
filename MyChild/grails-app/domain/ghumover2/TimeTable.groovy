@@ -5,7 +5,7 @@ import java.sql.Timestamp
 class TimeTable {
 
     Subject subject
-    CalendarDate date
+    String day
     Teacher teacher
     Timestamp startTime
     Timestamp endTime

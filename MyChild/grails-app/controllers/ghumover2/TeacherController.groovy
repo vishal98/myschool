@@ -6,7 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 
 @Secured(['ROLE_TEACHER'])
-class TeacherController {
+class 	TeacherController {
 	def getGrade (){
 		def article=new Grade()
 		def articleList=article.list()

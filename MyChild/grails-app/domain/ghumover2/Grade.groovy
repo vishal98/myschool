@@ -20,5 +20,8 @@ static mapping ={
 
     	classTeacherId(nullable:true)
 		classTeacherName(nullable:true)
+        gradeId(nullable: true)
+        classTeacherId(nullable: true)
+        classTeacherName(nullable: true )
     }
 }

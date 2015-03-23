@@ -16,7 +16,10 @@ class Student  {
 	String studentPhoto
 
 	String present_guardian
-	static belongsTo = [grade:Grade , father:Guardian , mother:Guardian , local_guardian:Guardian]
+	static belongsTo = [grade:Grade]
+	Guardian father
+	Guardian mother
+	Guardian local_guardian
 	static hasMany = [siblings:Sibling]
 
 
@@ -38,7 +41,6 @@ class Student  {
 	}
 
 	static mapping = {
-
 
 
 

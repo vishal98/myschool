@@ -27,16 +27,11 @@ class ParentController {
 	}
 	
 	def accountInfo(){
-		def article=new Guardian()
-		def articleList=article.list()
-		int id= Integer.parseInt(params.id)
-		def trek=article.findAllWhere(parentId:id)
-		println articleList
+		 render "hai"
 		
-		
-		JSON.use('father') {
-			render trek as JSON
-		}
+		//JSON.use('father') {
+		//	render trek as JSON
+        //		}
 	
 	}
 	def getHomeWork(){

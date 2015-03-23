@@ -26,6 +26,18 @@ class Homework
 	static constraints = {
 		student(nullable:true)
 		grade(nullable:true)
+		homeworkId(nullable: true)
+		grade(nullable: true)
+		subject(nullable: true)
+		dueDate(nullable: true)
+		homework(nullable: true)
+		section(nullable: true)
+		student(nullable: true)
+		message(nullable: true)
+		gradeFlag(nullable: true)
+
+
+
 		}
 	
 	
