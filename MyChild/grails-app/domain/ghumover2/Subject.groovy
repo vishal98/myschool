@@ -12,5 +12,6 @@ class Subject {
 
 
     static constraints = {
+        id generator: 'increment',name: 'subjectId'
     }
 }

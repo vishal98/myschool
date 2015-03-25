@@ -108,14 +108,16 @@ class UrlMappings {
 		// NEW ADDED APIS
 
 
-		"/myapp/timetable/$gradeId"
+
+		// TIME TABLE
+		"/app/timetable/$gradeId/$section"
 				{
 			controller = "TimeTable"
 			action = "getWeekTimetable"
 
 		     }
 
-		"/myapp/timetable/$gradeId/$section/$day"
+		"/app/timetable/$gradeId/$section/$day"
 				{
 					controller = "TimeTable"
 					action =  "getDayTimeTable"
@@ -123,32 +125,45 @@ class UrlMappings {
 
 
 
-
-        "/myapp/parent/accountInfo/$id"
+        // PARENT ACCOUNT DETAILS
+        "/app/parent/accountInfo/$id"
 				{
 					controller = "Guardian"
 					action = "getAccountInfo"
 				}
+		"/app/parent/$id/getChildren"
+				{
+					controller = "Guardian"
+					action = "getAllChildren"
 
-		"/myapp/getHomework/$gradeId/$section"
+				}
+
+
+         //HOMEWORK
+
+		"/app/getHomework/$gradeId/$section/all/$dateAssigned"
 				{
 					controller = "Homework"
 					action = "getClassHomework"
 
 				}
-		"/myapp/getHomework/$gradeId/$section/$subject"
+		"/app/getHomework/$gradeId/$section/$subject/$dateAssigned"
 				{
 					controller = "Homework"
 					action = "getClassHomeworkBySubject"
 
 				}
 
-		"/myapp/teacher/homework"(resources:"Homework")
+		"/app/teacher/homework/save"
+				{
+					controller = "Homework"
+				    action = "saveHomework"
+				}
 
 
-		"/myapp/parent"(resources : "guardian")
+		//"/app/parent"(resources : "guardian")
 
-		"/myapp/student"(resources : "student")
+		//"/app/student"(resources : "student")
 
 
 

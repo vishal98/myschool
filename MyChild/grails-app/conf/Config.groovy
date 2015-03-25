@@ -138,7 +138,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'ghumover2.User'
                 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ghumover2.UserRole'
                 grails.plugin.springsecurity.authority.className = 'ghumover2.Role'
-                grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+                grails.plugin.springsecurity.securityConfigType = 'Annotation'
                 grails.plugin.springsecurity.interceptUrlMap = [
                         '/':                    ['permitAll'],
                         '/index':               ['permitAll'],
@@ -146,19 +146,16 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'ghumover2.User'
                         '/assets/**':           ['permitAll'],
                         '/partials/**':         ['permitAll'],
                         '/api/**':              ['permitAll'],
-                        '/myapp/**':    ['permitAll'],
                         '/**':                  ['isFullyAuthenticated()']
                 ]
                 grails.plugin.springsecurity.filterChain.chainMap = [
 				
 					 '/Teacher/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
-					 
 					 '/Parent/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
-                     // '/myapp/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
+                     '/app/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
 
                      '/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
-                        '/data/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter', // Stateless chain
-                        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'   // Traditional chain
+                      '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'   // Traditional chain
                 ]
 
                 grails.plugin.springsecurity.rememberMe.persistent = false

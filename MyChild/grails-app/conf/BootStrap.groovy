@@ -124,20 +124,80 @@ class BootStrap {
 		def cl10A = Grade.get(3)
 		def cl10B = Grade.get(4)
 
-          //			new Student(studentName:"Rohith", grade:cl5A ,studentPhoto:"100.jpg").save(flush:true)
-	      //	        new Student(studentName:"Rahul",grade:cl5B,studentPhoto:"101.jpg").save(flush:true)
-	      //			new Student(studentName:"Manoj", grade:cl10A ,studentPhoto:"102.jpg").save(flush:true)
-		  // 			new Student(studentName:"Suresh",grade:cl5B,studentPhoto:"103.jpg").save(flush:true)
-		//				new Student(studentName:"Noble", grade:cl7A ,studentPhoto:"104.jpg").save(flush:true)
-		// 				new Student(studentName:"Thomas",grade:cl6A,studentPhoto:"105.jpg").save(flush:true)
 
-		//def rohith = Student.get(1)
-		//def rahul = Student.get(2)
-		//def manoj = Student.get(3)
-		//def suresh = Student.get(4)
-		//def noble = Student.get(5)
-		//def thomas = Student.get(6)
+		def father , mother , local_guardian , s1 , s2 , s3
+       // FIRST STUDENT DETAILS
+		s1 =  new Student(studentId:100 , grade:cl5A  , registerNumber: "ST100" ,studentName: "Rohith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()  ).save()
+        s1.setAsFather( new Guardian(name: "Ravi" , username: "ravi@test.com" , password: "123" , educational_qualification: "MBA" , designation: "Manager" , profession: "Private Employee" , emailId: "father@user.com" , officeNumber: "04868699000" , mobileNumber: "98470000" ).save() )
+		s1.setAsMother( new Guardian(name:"Raani" , username: "raani@test.com" , password: "123" , educational_qualification: "Bcom" , designation: "College Professor" , profession: "Lecturer" , emailId: "mother@user.com" ,officeNumber: "0489898989" , mobileNumber: "94466797979"  ).save() )
 
+		father = Guardian.findByUsername("ravi@test.com")
+		mother = Guardian.findByUsername("raani@test.com")
+
+		s2 =  new Student(studentId:101 ,grade: cl5A , registerNumber: "ST101" ,studentName: "Renjith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save() ).save()
+		s2.setAsFather( father )
+		s2.setAsMother( mother )
+
+		s3 =  new Student(studentId:102 , grade: cl6A ,  registerNumber: "ST102" ,studentName: "Rohan" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Father"  , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()).save()
+		s3.setAsFather( father )
+		s3.setAsMother( mother )
+
+		new UserRole(user:father , role:roleParent).save(flush: true)
+		new UserRole(user:mother , role:roleParent).save(flush: true)
+
+
+
+       // SECOND STUDENT DETAILS
+
+		s1 =  new Student(studentId:103 , grade:cl5A  , registerNumber: "ST103" ,studentName: "Midhun" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local Guardian" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()  ).save()
+		s1.setAsFather( new Guardian(name: "Mahadev" , username: "mahadev@test.com" , password: "123" , educational_qualification: "MBA" , designation: "Manager" , profession: "Private Employee" , emailId: "father@user.com" , officeNumber: "04868699000" , mobileNumber: "98470000" ).save() )
+		s1.setAsMother( new Guardian(name:"Malini" , username: "malini@test.com" , password: "123" , educational_qualification: "Bcom" , designation: "College Professor" , profession: "Lecturer" , emailId: "mother@user.com" ,officeNumber: "0489898989" , mobileNumber: "94466797979"  ).save() )
+        s1.setAsLocalGuardian((new Guardian(name:"Manish" , username: "manish@test.com" , password: "123" , educational_qualification: "MCA" , designation: "Software Engineer" , profession: "IT Professional" , emailId: "local_guard@test.com" ,officeNumber: "0489898989" , mobileNumber: "94466797979" )).save())
+		father = Guardian.findByUsername("mahadev@test.com")
+		mother = Guardian.findByUsername("malini@test.com")
+		local_guardian = Guardian.findByUsername("manish@test.com")
+
+
+		s2 =  new Student(studentId:104 ,grade: cl5A , registerNumber: "ST104" ,studentName: "Manoj" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local Guardian" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()).save()
+		s2.setAsFather( father )
+		s2.setAsMother( mother )
+		s2.setAsLocalGuardian( local_guardian )
+
+		s3 =  new Student(studentId:105 , grade: cl6A ,  registerNumber: "ST105" ,studentName: "Mohith" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Local Guardian", present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save() ).save()
+		s3.setAsFather( father )
+		s3.setAsMother( mother )
+		s3.setAsLocalGuardian( local_guardian )
+
+		new UserRole(user:father , role:roleParent).save(flush: true)
+		new UserRole(user:mother , role:roleParent).save(flush: true)
+
+
+
+		// third group STUDENT DETAILS
+
+		s1 =  new Student(studentId:106 , grade:cl5A  , registerNumber: "ST106" ,studentName: "Neha" , gender: "Female" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()  ).save()
+		s1.setAsFather( new Guardian(name: "Nagesh" , username: "nagesh@test.com" , password: "123" , educational_qualification: "MBA" , designation: "Manager" , profession: "Private Employee" , emailId: "father@user.com" , officeNumber: "04868699000" , mobileNumber: "98470000" ).save() )
+		s1.setAsMother( new Guardian(name:"Nanditha" , username: "nanditha@test.com" , password: "123" , educational_qualification: "Bcom" , designation: "College Professor" , profession: "Lecturer" , emailId: "mother@user.com" ,officeNumber: "0489898989" , mobileNumber: "94466797979"  ).save() )
+
+		father = Guardian.findByUsername("nagesh@test.com")
+		mother = Guardian.findByUsername("nanditha@test.com")
+
+		s2 =  new Student(studentId:107 ,grade: cl5A , registerNumber: "ST107" ,studentName: "Nivas" , gender: "Male" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()).save()
+		s2.setAsFather( father )
+		s2.setAsMother( mother )
+
+		s3 =  new Student(studentId:108 , grade: cl6A ,  registerNumber: "ST108" ,studentName: "Nikhitha" , gender: "Female" , dob:"12-12-2000" , studentPhoto: "photo.jpg", no_of_siblings: 2 , present_guardian: "Mother" , present_address: new Address(address: "Sample Address" , landmark: "Cochin" , place: "Kerala" ).save()).save()
+		s3.setAsFather( father )
+		s3.setAsMother( mother )
+
+		new UserRole(user:father , role:roleParent).save(flush: true)
+		new UserRole(user:mother , role:roleParent).save(flush: true)
+
+
+
+
+
+/*
 		def father , mother , local_guardian , s1 , s2 , s3
 		father = new Guardian(name: "Ravi" , username: "ravi@test.com" , password: "123" ).save(flush: true)
 		mother = new Guardian(name:"Raani" , username: "raani@test.com" , password: "123" ).save(flush: true)
@@ -212,7 +272,7 @@ class BootStrap {
 
 		new UserRole(user:father , role:roleParent).save(flush: true)
 		new UserRole(user:mother , role:roleParent).save(flush: true)
-
+*/
 		def mathew = Teacher.findByTeacherId(100)
 		def sibi = Teacher.findByTeacherId(101)
 		def sathees = Teacher.findByTeacherId(102)
@@ -221,8 +281,7 @@ class BootStrap {
 		new UserRole(user:sibi , role:roleTeacher).save(flush:true)
 		new UserRole(user:sathees , role:roleTeacher).save(flush:true)
 
-		//new UserRole(user:Father.findByUsername('ravi') , role:roleParent).save(flush:true)
-		//new UserRole(user:Father.findByUsername('hari') , role:roleParent ).save(flush:true)
+
 
 
 		cl5A.addToTeachers(mathew)
@@ -524,11 +583,68 @@ class BootStrap {
 					mobileNumber : g.mobileNumber,
 					emailId : g.emailId,
 					officeNumber : g.officeNumber,
-					children : g.children?.toList()
+					children : g.getChildren()
 
 
 			       ]
 		}
+
+		JSON.createNamedConfig('ParentAccInfo') {
+			it.registerObjectMarshaller( Guardian ) { Guardian g ->
+
+
+
+				return  ['accountInfo':['username': g.username,
+									    'name': g.name,
+									    'educational_qualification' : g.educational_qualification ,
+										'profession' : g.profession,
+										'designation' : g.designation ,
+										'mobileNumber' : g.mobileNumber ,
+										'emailId' : g.emailId,
+										'officeNumber' : g.officeNumber,
+										'numberOfChildren' : g.getChildren()?.size()
+										]]
+			}
+		}
+
+
+		JSON.createNamedConfig('getChildren') {
+			it.registerObjectMarshaller( Student ) { Student s ->
+
+
+
+				return                  [ 'id':s.id,
+						                  'studentId': s.studentId,
+										  'registerNumber': s.registerNumber,
+										  'studentName' : s.studentName ,
+										  'grade' : s.grade?.name,
+										  'section' : s.grade?.section,
+										  'gender' : s.gender,
+										  'present_address' : s.present_address ,
+										  'no_of_siblings' : s.no_of_siblings ,
+										  'dob' : s.dob,
+						                  'age' : s.getAge() ,
+										  'present_guardian' : s.present_guardian
+						                  /* 'father' :   [
+                                                           'id' : s.getFather()?.id,
+												           'name' : s.getFather()?.name ,
+										                ],
+										  'mother' :   [
+												  'id' : s.getMother()?.id,
+												  'name' : s.getMother()?.name ,
+										  ],
+										  'local_guardian' :   [
+												  'id' : s.getLocalGuardian()?.id,
+												  'name' : s.getLocalGuardian()?.name ,
+										  ]*/
+
+				                        ]
+			}
+		}
+
+
+
+
 
 		JSON.registerObjectMarshaller( Student ) { Student s ->
 			return [
@@ -544,9 +660,9 @@ class BootStrap {
 					present_guardian : s.present_guardian ,
 					grade : s.grade?.name ,
 					section : s.grade?.section ,
-					father: s?.father?.name ,
-					mother: s?.mother?.name ,
-					local_guardian: s?.local_guardian?.name
+					father: s?.getFather() ,
+					mother: s?.getMother() ,
+					local_guardian: s?.getLocalGuardian()
 
 			]
 		}
@@ -562,6 +678,15 @@ class BootStrap {
 
 
                     ]}
+
+
+		JSON.registerObjectMarshaller( Address ) { Address a ->
+			return [
+					address : a.address ,
+					place : a.place ,
+					landmark: a.landmark
+
+			]}
 
 
 		JSON.registerObjectMarshaller( Homework ) { Homework h ->
@@ -585,7 +710,21 @@ class BootStrap {
 
 
 
+		JSON.createNamedConfig('getTimeTable') {
+			it.registerObjectMarshaller( TimeTable ) { TimeTable t ->
 
+
+
+				return  [
+                             subject: t.subject?.subjectName,
+						     teacher: t.teacher?.teacherName ,
+						     teacherId: t.teacher?.teacherId,
+						     teacherPhoto: t.teacher?.teacherPhoto,
+							 startTime : t.startTime ,
+							 endTime : t.endTime
+				         ]
+			}
+		}
 
 
 
